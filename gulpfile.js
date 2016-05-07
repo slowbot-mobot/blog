@@ -3,14 +3,10 @@
     posts: []
   };
 
-  var gulp           = require('gulp');
-  var markdown       = require('gulp-markdown');
-  var htmlmin        = require('gulp-htmlmin');
-  var sequence       = require('gulp-sequence');
-  var data           = require('gulp-data');
-  var webserver      = require('gulp-webserver');
-  var nunjucksRender = require('gulp-nunjucks-render');
-  var frontMatter    = require('gulp-front-matter');
+  var gulp    = require('gulp');
+  var plugins = require('gulp-load-plugins')();
+  var bSync   = require('browser-sync');
+  var reload  = bSync.reload;
 
   var del       = require('del');
   var through2  = require('through2');
@@ -20,7 +16,6 @@
 
     return through2.obj(function(file, enc, cb) {
       var post = file.page;
-      post.title = "foo title";
       post.content = file.contents.toString();
       posts.push(post);
       this.push(file);
@@ -37,33 +32,44 @@
 
   gulp.task('blog', function() {
     return gulp.src("src/posts/**/*.md")
-               .pipe(frontMatter({ property: 'page', remove: true }))
-               .pipe(markdown())
+               .pipe(plugins.frontMatter({ property: 'page', remove: true }))
+               .pipe(plugins.markdown())
                .pipe(collectPosts())
-               .pipe(htmlmin({collapseWhitespace: true}))
-               .pipe(gulp.dest("dist/blog"));
+               .pipe(plugins.htmlmin({collapseWhitespace: true}))
+               .pipe(gulp.dest("dist/blog"))
+               .pipe(reload({stream: true}));
   });
 
   gulp.task('pages', function() {
     return gulp.src(["src/pages/**/*.html", "src/templates/**/*.html"])
-               .pipe(data({site: site}))
-               .pipe(nunjucksRender({
+               .pipe(plugins.data({site: site}))
+               .pipe(plugins.nunjucksRender({
                  path: ['src/templates']
                }))
-               .pipe(htmlmin({collapseWhitespace: true}))
-               .pipe(gulp.dest("dist"));
+               .pipe(plugins.htmlmin({collapseWhitespace: true}))
+               .pipe(gulp.dest("dist"))
+               .pipe(reload({stream: true}));
   });
 
-  gulp.task('serve', function() {
-    gulp.src('dist')
-      .pipe(webserver({
-	livereload: true,
-	directoryListing: false,
-        host: "127.0.0.1",
-        post: 3000,
-	open: true
-      }));
+  gulp.task('serve', function(cb) {
+    return plugins.sequence('sync', 'watch', cb);
   });
 
-  gulp.task('default', sequence('clean', 'blog', 'pages', 'serve'));
+  gulp.task('content', function(cb) {
+    return plugins.sequence('blog', 'pages', cb);
+  });
+
+  gulp.task('sync', function() {
+    return bSync({server: { baseDir: 'dist' }});
+  });
+
+  gulp.task('watch', function() {
+    //gulp.watch('src/js/**/*.js', ['js']);
+    //gulp.watch('src/sass/**/*.scss', ['css']);
+    gulp.watch(['src/**/*.html'], ['content']);
+    gulp.watch(['src/posts/**/*'], ['content']);
+    //gulp.watch('src/images/**/*', ['images']);
+  });
+
+  gulp.task('default', plugins.sequence('clean', 'content', 'serve'));
 })();
