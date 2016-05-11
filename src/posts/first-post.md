@@ -16,6 +16,6 @@ Amet provident amet facere omnis repudiandae. Eaque perferendis aut facere alias
 * sdf
 
 ## h2
-[https://google.com](A link to google)
+[A path somewhere cool](/new_post.html)
 
 **i am bold**
