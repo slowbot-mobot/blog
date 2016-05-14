@@ -1,0 +1,17 @@
+#! /usr/bin/env node
+console.log(function() {
+
+  var title = process.argv[2];
+  var blogUtil = require('./lib/utility');
+  var filename = "./src/posts/" + blogUtil.titleToPath(title) + '.md';
+
+  var fs = require('fs');
+  fs.writeFile(filename, "SOME_TEMPLATE_HERE", function(err) {
+      if(err) {
+        return console.log(err);
+      } else {
+        console.log("Created!, open it with 'vi " +  filename + "'");
+      }
+    }); 
+
+}());

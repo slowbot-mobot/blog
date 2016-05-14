@@ -1,22 +1,17 @@
 {% extends 'page.html' %}
 
 {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      {% for post in site.posts %}
-        <article>
-          <h2>{{ post.title }}</h2>
-          <div class="meta">
-            <div><author>{{ post.author }}</author></div>
-          </div>
-          <hr>
-          <div class="content">
-            {{ post.content | safe }}
-          </div>
-        </article>
-      {% endfor %}
-    </div>
-  </div>
+
+
+
+ <div class="form-group">
+  <label for="comment">New blog post:</label>
+  <textarea class="form-control" rows="5" id="comment"></textarea>
 </div>
+
+<button type="submit" class="btn btn-default">Submit</button>
+<div class = "col-md-8">
+Some words. Also some other words.
+</div>
+
 {% endblock %}
