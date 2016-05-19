@@ -19,6 +19,7 @@
     "gulp-markdown": "^1.2.0",
     "gulp-nunjucks-render": "^2.0.0",
     "gulp-sequence": "^0.4.5",
-    "gulp-watch": "^4.3.5"
+    "gulp-watch": "^4.3.5",
+    "mkdirp": "^0.5.1"
   }
 }

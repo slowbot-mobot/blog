@@ -9,10 +9,12 @@
           <h2>{{ post.title }}</h2>
           <div class="meta">
             <div><author>{{ post.author }}</author></div>
+            <div><date>{{ post.date }}</date></div>
           </div>
           <hr>
           <div class="content">
-            {{ post.content | safe }}
+            {{ post.summary | safe }}
+            ADD A LINK HERE "to read more" and set the link to go to the post
           </div>
         </article>
       {% endfor %}

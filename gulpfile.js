@@ -14,12 +14,17 @@
   var del       = require('del');
   var through2  = require('through2');
 
+  var summarize = function(html) {
+    return 'foo'; // only the first paragraph
+  };
+
   var collectPosts = function() {
     var posts = [];
 
     return through2.obj(function(file, enc, cb) {
       var post = file.page;
       post.content = file.contents.toString();
+      post.summary = summarize(post.content);
       posts.push(post);
       this.push(file);
       cb();
@@ -44,13 +49,13 @@
   });
 
   gulp.task('pages', function() {
-    return gulp.src(["src/pages/**/*.html", "src/templates/**/*.html"])
+    return gulp.src(["src/pages/**/*.html"])
                .pipe(plugins.data({site: site}))
                .pipe(plugins.nunjucksRender({
                  path: ['src/templates']
                }))
                .pipe(plugins.htmlmin({collapseWhitespace: true}))
-               .pipe(gulp.dest("dist"))
+               .pipe(gulp.dest("dist/"))
                .pipe(reload({stream: true}));
   });
 

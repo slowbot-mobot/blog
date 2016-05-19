@@ -1,17 +1,40 @@
 #! /usr/bin/env node
-console.log(function() {
 
-  var title = process.argv[2];
-  var blogUtil = require('./lib/utility');
-  var filename = "./src/posts/" + blogUtil.titleToPath(title) + '.md';
+// this is how you use it
+// ./newpost "2016/04/20" "My awesome blog post"
+// ./newpost "My awesome blog post"
+
+(function() {
 
   var fs = require('fs');
-  fs.writeFile(filename, "SOME_TEMPLATE_HERE", function(err) {
+  var mkdirp = require('mkdirp');
+  var blogUtil = require('./lib/utility');
+
+  var onlyTitle = function() {
+    return process.argv.length == 3;
+  };
+
+  var title, filename;
+
+  if (onlyTitle()) {
+    title = process.argv[2];
+    filename = "./src/posts/" + blogUtil.titleToPath(title) + '.md';
+  } else {
+    mkdirp.sync("./src/posts/" + process.argv[2]);
+    var title = process.argv[3];
+    filename = "./src/posts/" + process.argv[2] + 
+               "/" + blogUtil.titleToPath(title) + '.md';
+  }
+
+  var postTemplate = fs.readFileSync('./post-template.md');
+
+
+  fs.writeFile(filename, postTemplate, function(err) {
       if(err) {
         return console.log(err);
       } else {
-        console.log("Created!, open it with 'vi " +  filename + "'");
+        console.log("Created! Open it with 'vim " +  filename + "'");
       }
-    }); 
+    });
 
 }());
