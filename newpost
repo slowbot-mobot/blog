@@ -4,8 +4,11 @@
 // ./newpost "2016/04/20" "My awesome blog post"
 // ./newpost "My awesome blog post"
 
-(function() {
+var nunjucks = require('nunjucks');
 
+
+(function() {
+ 
   var fs = require('fs');
   var mkdirp = require('mkdirp');
   var blogUtil = require('./lib/utility');
@@ -14,22 +17,29 @@
     return process.argv.length == 3;
   };
 
-  var title, filename;
+  var title, filename, permalink;
 
   if (onlyTitle()) {
     title = process.argv[2];
     filename = "./src/posts/" + blogUtil.titleToPath(title) + '.md';
+    permalink = "./src/posts/" + blogUtil.titleToPath(title) + '.html';
   } else {
     mkdirp.sync("./src/posts/" + process.argv[2]);
     var title = process.argv[3];
     filename = "./src/posts/" + process.argv[2] + 
                "/" + blogUtil.titleToPath(title) + '.md';
+    permalink = "./src/posts/" + process.argv[2] + 
+               "/" + blogUtil.titleToPath(title) + '.html';
   }
 
-  var postTemplate = fs.readFileSync('./post-template.md');
+  var postText = nunjucks.render('./post-template.md', {
+      permalink: permalink,
+      title:title
+  });
 
 
-  fs.writeFile(filename, postTemplate, function(err) {
+
+  fs.writeFile(filename, postText, function(err) {
       if(err) {
         return console.log(err);
       } else {
