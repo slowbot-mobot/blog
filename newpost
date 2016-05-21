@@ -1,7 +1,5 @@
 #! /usr/bin/env node
 
-// this is how you use it
-// ./newpost "2016/04/20" "My awesome blog post"
 // ./newpost "My awesome blog post"
 
 var nunjucks = require('nunjucks');
@@ -17,24 +15,27 @@ var nunjucks = require('nunjucks');
     return process.argv.length == 3;
   };
 
-  var title, filename, permalink;
+  var title, filename, permalink, date;
 
   if (onlyTitle()) {
     title = process.argv[2];
     filename = "./src/posts/" + blogUtil.titleToPath(title) + '.md';
-    permalink = "./src/posts/" + blogUtil.titleToPath(title) + '.html';
+    permalink = "/" + blogUtil.titleToPath(title) + '.html';
+    date = "Undated"; 
   } else {
     mkdirp.sync("./src/posts/" + process.argv[2]);
-    var title = process.argv[3];
+    title = process.argv[3];
+    date = process.argv[2];
     filename = "./src/posts/" + process.argv[2] + 
                "/" + blogUtil.titleToPath(title) + '.md';
-    permalink = "./src/posts/" + process.argv[2] + 
+    permalink = "/" + process.argv[2] + 
                "/" + blogUtil.titleToPath(title) + '.html';
   }
 
   var postText = nunjucks.render('./post-template.md', {
       permalink: permalink,
-      title:title
+      title: title,
+      date: date
   });
 
 

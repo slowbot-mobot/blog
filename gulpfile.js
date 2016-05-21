@@ -15,7 +15,9 @@
   var through2  = require('through2');
 
   var summarize = function(html) {
-    return 'foo'; // only the first paragraph
+    var parts = [];
+    parts = html.split("<!--Summary ends here -->");
+    return parts[0];
   };
 
   var collectPosts = function() {
@@ -23,7 +25,7 @@
 
     return through2.obj(function(file, enc, cb) {
       var post = file.page;
-      post.content = ""; //file.contents.toString();
+      post.content = file.contents.toString();
       post.summary = summarize(post.content);
       posts.push(post);
       this.push(file);
