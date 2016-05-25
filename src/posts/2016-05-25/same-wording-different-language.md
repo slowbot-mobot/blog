@@ -3,6 +3,7 @@ title: Same Wording, Different Language
 author: Glen
 permalink: /blog/2016-05-25/same-wording-different-language.html 
 date: 2016-05-25
+dateString: "2016-05-25"
 ---
 
 

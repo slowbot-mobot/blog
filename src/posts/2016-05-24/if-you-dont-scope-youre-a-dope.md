@@ -3,6 +3,7 @@ title: If you don&#39;t scope, you&#39;re a dope
 author: Glen
 permalink: /blog/2016-05-24/if-you-dont-scope-youre-a-dope.html 
 date: 2016-05-24
+dateString: "2016-05-24"
 ---
 
   Scoping refers to what is “readable” or “available” to different methods in a given program, and is one of the more intuitive aspects of programming. Generally speaking, if you think of a function as a series of matryoshka dolls made of reverse-mirror stuff with the mirror part looking outwards, then you have a pretty good handle on how it works. Objects inside the function can “see” (and access and manipulate) things outside its scope, but within the function itself, can only access things immediately inside the scope.

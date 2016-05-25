@@ -9,10 +9,10 @@
     <div class="col-md-12">
       {% for post in site.posts %}
         <article>
-          <h2><a href = "{{post.permalink}}">{{ post.title }}</a></h2>
+          <h2><a href = "{{post.permalink}}">{{ post.title | safe }}</a></h2>
           <div class="meta">
             <div><author>{{ post.author }}</author></div>
-            <div><date>{{ post.date }}</date></div>
+            <div><date>{{ post.dateString }}</date></div>
           </div>
           <hr>
           <div class="content">
