@@ -20,7 +20,7 @@ var nunjucks = require('nunjucks');
   if (onlyTitle()) {
     title = process.argv[2];
     filename = "./src/posts/" + blogUtil.titleToPath(title) + '.md';
-    permalink = "/" + blogUtil.titleToPath(title) + '.html';
+    permalink = "/blog/" + blogUtil.titleToPath(title) + '.html';
     date = "Undated"; 
   } else {
     mkdirp.sync("./src/posts/" + process.argv[2]);
@@ -29,7 +29,7 @@ var nunjucks = require('nunjucks');
     filename = "./src/posts/" + process.argv[2] + 
                "/" + blogUtil.titleToPath(title) + '.md';
     permalink = "/" + process.argv[2] + 
-               "/" + blogUtil.titleToPath(title) + '.html';
+               "/blog/" + blogUtil.titleToPath(title) + '.html';
   }
 
   var postText = nunjucks.render('./post-template.md', {
