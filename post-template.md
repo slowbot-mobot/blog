@@ -2,7 +2,6 @@
 title: {{title}}
 author: Glen
 permalink: {{permalink}} 
-date: {{date}}
 date_string: {{date}}
 ---
 
