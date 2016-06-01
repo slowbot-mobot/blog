@@ -6,10 +6,9 @@
   };
 
   var gulp    = require('gulp');
-  var ghPages = require('gulp-gh-pages');
+  var fs    = require('fs');
   var concat = require('gulp-concat-util');
   var plugins = require('gulp-load-plugins')();
-  var uglify = require('gulp-uglify');
   var bSync   = require('browser-sync');
   var reload  = bSync.reload;
   var blogUtil= require('./lib/utility');
@@ -48,6 +47,9 @@
                .pipe(plugins.frontMatter({ property: 'page', remove: true }))
                .pipe(plugins.markdown())
                .pipe(collectPosts())
+               .pipe(plugins.wrap(function (data) {
+               return fs.readFileSync('src/templates/post.html').toString();
+               }, null, {engine: 'nunjucks'})) 
                .pipe(plugins.htmlmin({collapseWhitespace: true}))
                .pipe(gulp.dest("dist/blog"))
                .pipe(reload({stream: true}));
@@ -57,7 +59,7 @@
     return gulp.src(["src/pages/**/*.html"])
                .pipe(plugins.data({site: site}))
                .pipe(plugins.nunjucksRender({
-                 path: ['src/templates']
+               path: ['src/templates']
                }))
                .pipe(plugins.htmlmin({collapseWhitespace: true}))
                .pipe(gulp.dest("dist/"))
@@ -78,7 +80,7 @@
 
   gulp.task('scripts', function() {
     return gulp.src(["src/js/**/*.js"])
-               .pipe(uglify())
+               .pipe(plugins.uglify())
                .pipe(concat('app.min.js'))
                .pipe(gulp.dest("dist/js"))
                .pipe(reload({stream: true}));

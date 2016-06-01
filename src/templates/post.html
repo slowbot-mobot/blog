@@ -13,7 +13,32 @@
 </nav>
 <body>
 <div class="page-content">
-  {% block content %}{% endblock %}
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="post-title">
+            <h2>{{ file.page.title }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="post-author">
+            {{ file.page.author }}
+          </div>
+          <br>
+          <div class = "post-body">
+            {{ file.page.content | safe }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
 </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -22,5 +47,6 @@
   <div class="container">
  Here is some footer words.
   </div>
-</nav></body>
+</nav>
+</body>
 </html>
