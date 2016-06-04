@@ -39,7 +39,6 @@
   };
 
   var manageEnvironment = function(env) {
-    console.log('managing like a mutha');
     env.addFilter('dateTranslate', function(date, translated) {
       var months = 'January February March April May June July August September October November December'.split(' ');
       var year = date.slice(0, 4);
