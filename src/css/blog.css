@@ -1,0 +1,12 @@
+.post-grid .entry {
+    float: left;
+    width: 264px;
+    margin-right: 28px;
+}
+.entry {
+    position: relative;
+    margin: 0 0 50px;
+    padding: 0 0 50px;
+    border-bottom: 2px solid #F5F5F5;
+    margin-bottom: 20px;
+}

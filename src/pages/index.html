@@ -1,24 +1,27 @@
 {% extends 'page.html' %}
 
-{% block menu %}
-<li><a href="/blog.html">Blog</a></li>
-{% endblock %}
 {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
+<div class="content-wrap">
+  <div class="container clearfix">
+    <div id="posts" class="clearfix">
       {% for post in site.posts %}
-        <article>
-          <h2><a href = "{{post.permalink}}">{{ post.title | safe }}</a></h2>
+      <div class="entry clearfix">
+<!--        <div class="entry-image">
+          <a data-lightbox="image" href="{{ post.permalink }}">
+            <img class="image_fade" src="/images/blog/{{ post.title | lower | replace(' ', '-') }}.jpg" alt="{{ post.title }}"></a>
+        </div>
+        <ul class="entry-meta clearfix">
+          <li><a href="https://codementor.io/devschool" target="_blank"><i class="icon-user"></i> {{ post.author }}</a></li>
+          <li><i class="icon-folder-open"></i> {{ post.tags }}</li>
+        </ul>-->
+        <div class="entry-content">
+          <h3><a href="{{ post.permalink }}">{{ post.title }}</a></h3>
           <div class="meta">
-            <div><author>{{ post.author }}</author></div>
-            <div><date>{{ post.date_string | dateTranslate }}</date></div>
-          </div>
-          <hr>
-          <div class="content">
-            {{ post.summary | safe }}
-          </div>
-        </article>
+                <div>published on: {{ file.page.published_on }}</div>
+          {{ post.summary|safe }}
+          <a class="more-link" href="{{ post.permalink }}">Continue reading this article</a>
+        </div>
+      </div>
       {% endfor %}
     </div>
   </div>
