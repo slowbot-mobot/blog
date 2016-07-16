@@ -41,7 +41,7 @@
   };
   
   var nunOpts = {
-    path: ['src/templates'], 
+    path: ["src/templates"], 
     engine: 'nunjucks'
   };
 
@@ -51,7 +51,7 @@
 
   gulp.task('blog', function() {
     return gulp.src("src/posts/**/*.md")
-      .pipe(plugins.frontMatter({ property: 'page', remove: true }))
+      .pipe(plugins.frontMatter({ property: "page", remove: true }))
       .pipe(plugins.data({site: site}))
       .pipe(collectPosts())
       .pipe(plugins.markdown())
@@ -115,19 +115,19 @@
       });
 
   gulp.task('watch', function() {
-        gulp.watch(['src/posts/**/*'], ['content']);
-        gulp.watch('src/js/**/*.js', ['scripts']);
-        gulp.watch('src/css/**/*.css', ['styles']);
-        gulp.watch(['src/**/*.html'], ['content']);
-        gulp.watch('src/images/**/*', ['images']);
-      });
+    gulp.watch( [ "src/posts/**/*"   ] , [ 'content' ] );
+    gulp.watch( [ 'src/js/**/*.js'   ] , [ 'scripts' ] );
+    gulp.watch( [ 'src/css/**/*.css' ] , [ 'styles'  ] );
+    gulp.watch( [ 'src/**/*.html'    ] , [ 'content' ] );
+    gulp.watch( [ 'src/images/**/*'  ] , [ 'images'  ] );
+  });
 
   gulp.task('deploy', function() {
     return gulp.src('./dist/**/*')
-        .pipe(ghPages());
-      });
+               .pipe(ghPages());
+  });
 
   gulp.task('production', plugins.sequence('clean', 'assets', 'content', 'pages', 'blog'));
 
   gulp.task('default', plugins.sequence('clean', 'assets', 'content', 'pages', 'blog', 'serve'));
-    })();
+})();
