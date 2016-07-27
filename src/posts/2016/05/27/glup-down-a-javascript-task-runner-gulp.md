@@ -3,6 +3,7 @@ title: Glup Down a Javascript Task Runner
 author: Glen
 permalink: /blog/2016/05/27/glup-down-a-javascript-task-runner-gulp.html 
 date_string: 2016/05/27
+tags: javascript, gulp
 ---
   Gulp is an onomatopoeia associated with swallowing. Gulp.js is a task runner for Javascript.
 

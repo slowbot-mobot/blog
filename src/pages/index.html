@@ -2,27 +2,28 @@
 
 {% block content %}
 <div class="content-wrap">
-  <div class="container clearfix">
-    <div id="posts" class="clearfix">
-      {% for post in site.posts %}
-      <div class="entry clearfix">
-<!--        <div class="entry-image">
-          <a data-lightbox="image" href="{{ post.permalink }}">
-            <img class="image_fade" src="/images/blog/{{ post.title | lower | replace(' ', '-') }}.jpg" alt="{{ post.title }}"></a>
-        </div>
-        <ul class="entry-meta clearfix">
-          <li><a href="https://codementor.io/devschool" target="_blank"><i class="icon-user"></i> {{ post.author }}</a></li>
-          <li><i class="icon-folder-open"></i> {{ post.tags }}</li>
-        </ul>-->
-        <div class="entry-content">
-          <h3><a href="{{ post.permalink }}">{{ post.title }}</a></h3>
-          <div class="meta">
-                <div>published on: {{ file.page.published_on }}</div>
-          {{ post.summary|safe }}
-          <a class="more-link" href="{{ post.permalink }}">Continue reading this article</a>
-        </div>
+  <div class="container">
+    <div class="row">
+      <nav class="col-md-3">
+        <div class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
+          Sidebars sure are neato! I could totally put something here.        
+        <div>
+      </nav>
+
+      <div id="posts" class="col-md-9 clearfix">
+        {% for post in site.posts %}
+          <div class="entry clearfix">
+            <div class="entry-content">
+              <h3><a href="{{ post.permalink }}">{{ post.title }}</a></h3>
+              <div class="meta">
+                <div>Published on: {{ post.published_on }}</div>
+                {{ post.summary|safe }}
+                <a class="more-link" href="{{ post.permalink }}">Continue reading this article</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
   </div>
 </div>
