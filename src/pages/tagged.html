@@ -11,12 +11,15 @@
           <li><a href="#section3">Section 3</a></li>
         </ul>
       </nav>
-  <script type="text/json" id="json_posts">{{ site.posts_as_json }}</script>
-  <script src="js/app.min.js"></script>
-  <script type="text/javascript">
-  </script>
-  <body>
-  <div></div>
-  </body>
+      <div id="posts" class="col-md-9 clearfix"></div>
+    </div>
+  </div>
 </div>
+<script type="application/json" id="json_posts">{{ site.posts_as_json }}</script>
+<article id="taggedPostTemplate">
+  <div class="title"></div>
+  <div class="author"></div>
+  <div class="publishedOn"></div>
+  <div class="body"></div>
+</article>
 {% endblock %}

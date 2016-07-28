@@ -15,6 +15,8 @@
   var del        = require('del');
   var through2   = require('through2');
   var dateFormat = require('dateformat');
+  var browserify = require('browserify');
+  var source     = require('vinyl-source-stream');
   var reload     = bSync.reload;
 
   var summarize = function(html) {
@@ -106,6 +108,13 @@
     return gulp.src(["src/static/**/*"])
                .pipe(gulp.dest("dist"))
                .pipe(reload({stream: true}));
+  });
+
+  gulp.task('browserify', function(){
+    return browserify('src/js/requirements')
+          .bundle()
+          .pipe(source('bundle.js'))
+          .pipe(gulp.dest('dist/js'));
   });
 
   gulp.task('scripts', function() {
