@@ -19,6 +19,7 @@
 
 $(document).ready(function(){
   var jsonPosts = JSON.parse($('<div/>').html($('#json_posts').html()).text());
+
   var injectPost = function(json){
     var title = json.title;
     var author = json.author;
@@ -29,13 +30,23 @@ $(document).ready(function(){
     $('#taggedPostTemplate').append( $("<div></div>").addClass("date").text(date));
     $('#taggedPostTemplate').append( $("<div></div>").addClass("body").text(body));
   };
+
   var postRunner = function(json){
+    var query = urlParser().toString();
+    var taggedPosts = [];
     for (var key = 0; key < json.length; key++){
-      injectPost(json[key]);
+      if (json[key].tags.indexOf(query) !== -1){
+        taggedPosts.push(json[key]);
+      }
+    }
+    for (key = 0; key < taggedPosts.length; key++){
+      injectPost(taggedPosts[key]);
     }
   };
+
   var urlParser = function(){
-      
+    var query = window.location.search.substring(1);
+    return query;
   };
   postRunner(jsonPosts);
 });
