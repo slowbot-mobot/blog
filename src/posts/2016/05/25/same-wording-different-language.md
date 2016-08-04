@@ -5,7 +5,7 @@ permalink: /blog/2016/05/25/same-wording-different-language.html
 tags: Javascript, c++, loops
 ---
 
-While coding and speech are very different things, since they both involve “languages,” you might as well make use of the metaphor when the opportunity arises.
+While coding and speech are two different things, since they both involve “languages,” you might as well make use of the metaphor when the opportunity arises.
 
 <!--Summary ends here -->
 
