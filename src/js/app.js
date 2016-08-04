@@ -25,10 +25,13 @@ $(document).ready(function(){
     var author = json.author;
     var body = json.summary;
     var date = json.published_on;
-    $('#taggedPostTemplate').append( $("<div></div>").addClass("title").text(title));
-    $('#taggedPostTemplate').append( $("<div></div>").addClass("author").text(author));
-    $('#taggedPostTemplate').append( $("<div></div>").addClass("date").text(date));
-    $('#taggedPostTemplate').append( $("<div></div>").addClass("body").text(body));
+    var html = $('#taggedPostTemplate').clone();
+    html.removeAttr('id');
+    html.append( $("<div></div>").addClass("title").text(title));
+    html.append( $("<div></div>").addClass("author").text(author));
+    html.append( $("<div></div>").addClass("date").text(date));
+    html.append( $("<div></div>").addClass("body").html(body));
+    $("#posts").append(html);
   };
 
   var postRunner = function(json){
