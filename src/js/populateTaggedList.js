@@ -15,7 +15,7 @@ $(document).ready(function(){
     $("#posts").append(html);
   };
 
-  var postRunner = function(json){
+  var populateTaggedPosts = function(json){
     var query = urlParser().toString();
     var taggedPosts = [];
     for (var key = 0; key < json.length; key++){
@@ -32,5 +32,17 @@ $(document).ready(function(){
     var query = window.location.search.substring(1);
     return query;
   };
-  postRunner(jsonPosts);
+/*
+  var populateRelatedPosts = function(json, tagsToSearch){
+   for (key = 0; key < json.length; key++){
+     for (key=0; key < json[key].tags.length; key++){
+      var searchableList = [];
+      searchableList.push(json[key].tags); 
+      }
+     var tagBeingSearched; 
+     for searchableList
+    }
+  };
+  */
+  populateTaggedPosts(jsonPosts);
 });
