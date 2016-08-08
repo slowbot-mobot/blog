@@ -55,7 +55,31 @@ img {
    width:auto;
 }
 
+#relatedPosts li{
+  margin-right:1em;
+}
 
+#relatedPosts li:after{
+  margin-left:1em;
+  content: '|';
+}
+
+#relatedPosts li:last-child:after{
+  margin-left:1em;
+  content: '';
+}
+
+#relatedPostTemplate{
+  display:none;
+}
+
+#taggedPostTemplate{
+  display:none;
+}
+
+#relatedPosts{
+  text-align:center;
+}
 
 
 

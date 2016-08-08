@@ -37,11 +37,11 @@
             </div>
           </div>
         </div>
+        <ul class="list-unstyled list-inline" id="relatedPosts"></ul>
       </article>
     </div>
-    <div class="related-posts">
-      
-    </div>
+    <article id="taggedPostTemplate"></article>
+    <li id="relatedPostTemplate"></li>
 
     <nav class="navbar navbar-default navbar-bottom">
       <div class="container">
@@ -49,8 +49,10 @@
       </div>
     </nav>
 
+    <script type="application/text" id="currTags">{{ file.page.tags }}</script>
+    <script type="application/json" id="json_posts">{{ site.posts_as_json }}</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-    <script src="js/app.min.js"></script>
+    <script src="../../../../js/app.min.js"></script>
   </body>
 </html>

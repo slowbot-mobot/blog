@@ -3,6 +3,7 @@ title: Before Finding a Solution, First Find a Problem
 author: Glen
 permalink: /blog/2016/07/23/before-finding-a-solution-first-find-a-problem.html 
 date_string: 2016/07/23
+tags: javascript
 ---
 
 I had a problem to solve:
