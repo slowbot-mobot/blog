@@ -1,5 +1,6 @@
 $(document).ready(function(){
   var jsonPosts = JSON.parse($('<div/>').html($('#json_posts').html()).text());
+  //var currTags = JSON.parse($('<div/>').html($('#currTags').html()).text());
 
   var injectPost = function(json){
     var title = json.title;
@@ -32,17 +33,32 @@ $(document).ready(function(){
     var query = window.location.search.substring(1);
     return query;
   };
-/*
-  var populateRelatedPosts = function(json, tagsToSearch){
-   for (key = 0; key < json.length; key++){
-     for (key=0; key < json[key].tags.length; key++){
-      var searchableList = [];
-      searchableList.push(json[key].tags); 
-      }
-     var tagBeingSearched; 
-     for searchableList
-    }
+
+  var parseCurrTags = function(currTags){
+    console.log(currTags);
+    currTags.split(',');
+    console.log(currTags);
   };
-  */
-  populateTaggedPosts(jsonPosts);
+
+  var populateRelatedPosts = function(json, tagsToSearch){
+    injectRelatedPosts(json.filter(function(article){
+      return article.title !== $('.post-title h2').text();
+    }).filter(function(article){
+      return article.tags.filter(function(tag){
+        return tagsToSearch.includes(tag);
+      });
+    }));
+  };
+
+  var injectRelatedPosts = function(similarPosts){
+    _.sample(similarPosts, 3).forEach(function(post){
+      var related = $("#relatedPostTemplate").clone();
+      related.removeAttr('id');
+      related.append( $("<a href=" + post.permalink + "></a>").addClass("title").text(post.title));
+      $('#relatedPosts').append(related);
+    });
+  };
+  //parseCurrTags(currTags);
+  populateRelatedPosts(jsonPosts, $("#currTags").text().split(',') );
+  //populateTaggedPosts(jsonPosts);
 });
