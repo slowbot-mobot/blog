@@ -14,9 +14,13 @@
         {% for post in site.posts %}
           <div class="entry clearfix">
             <div class="entry-content">
-              <h3><a href="{{ post.permalink }}">{{ post.title }}</a></h3>
-              <div class="meta">
-                <div>Published on: {{ post.published_on }}</div>
+              <div class="post-title">
+                {{ post.title }}
+              </div>
+              <div class="post-date">
+                Published on: {{ post.published_on }}
+              </div>
+              <div class="post-body">
                 {{ post.summary|safe }}
                 <a class="more-link" href="{{ post.permalink }}">Continue reading this article</a>
               </div>

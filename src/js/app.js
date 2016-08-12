@@ -7,12 +7,14 @@ $(document).ready(function(){
     var author = json.author;
     var body = json.summary;
     var date = json.published_on;
+    var link = json.permalink;
     var html = $('#taggedPostTemplate').clone();
     html.removeAttr('id');
-    html.append( $("<div></div>").addClass("title").text(title));
-    html.append( $("<div></div>").addClass("author").text(author));
-    html.append( $("<div></div>").addClass("date").text(date));
-    html.append( $("<div></div>").addClass("body").html(body));
+    html.append( $("<div></div>").addClass("post-title").text(title));
+    html.append( $("<div></div>").addClass("post-author").text(author));
+    html.append( $("<div></div>").addClass("post-date").text(date));
+    html.append( $("<div></div>").addClass("post-body").html(body));
+    html.append( $("<a href=" + link + "></a>").addClass("post-link").text("Continue reading this article"));
     $("#posts").append(html);
   };
 
@@ -34,11 +36,6 @@ $(document).ready(function(){
     return query;
   };
 
-  var parseCurrTags = function(currTags){
-    console.log(currTags);
-    currTags.split(',');
-    console.log(currTags);
-  };
 
   var populateRelatedPosts = function(json, tagsToSearch){
     injectRelatedPosts(json.filter(function(article){
@@ -58,7 +55,6 @@ $(document).ready(function(){
       $('#relatedPosts').append(related);
     });
   };
-  //parseCurrTags(currTags);
   populateRelatedPosts(jsonPosts, $("#currTags").text().split(',') );
-  //populateTaggedPosts(jsonPosts);
+  populateTaggedPosts(jsonPosts);
 });

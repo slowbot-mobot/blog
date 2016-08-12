@@ -33,7 +33,12 @@ a:active {
 
 .post-body{
   font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;	
+  text-indent: 3em;
   font-size: 1em;
+}
+.post-author{
+  font-size: 1em;
+  font-family:"Times New Roman", "Times", sans-serif;
 }
 
 .page-content{
@@ -43,11 +48,14 @@ a:active {
 
 .post-title{
   font-size: 2.5em;
-  font-family:"Courier New", Courier, monospace;
+  font-family:"Aldus";
+}
+.post-date{
+  margin:1em 0em 1em;
+  font-family:"Times New Roman", "Times", sans-serif;
 }
 
-
-.more-link{
+.post-link{
   font-color:#0D8C0D; 
 }
 

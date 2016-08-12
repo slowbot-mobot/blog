@@ -148,7 +148,7 @@
 
   gulp.task('deploy', function() {
     return gulp.src('./dist/**/*')
-               .pipe(ghPages());
+               .pipe(plugins.ghPages());
   });
 
   gulp.task('production', plugins.sequence('clean', 'assets', 'content', 'pages', 'blog'));

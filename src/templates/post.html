@@ -16,11 +16,11 @@
     <div class="container">
       <article>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="post-title">
-              <h2>{{ file.page.title }}</h2>
+              {{ file.page.title }}
             </div>
-            <div class="post-meta">
+            <div class="post-date">
               <div>Published on: {{ file.page.published_on }}</div>
             </div>
           </div>
@@ -28,7 +28,7 @@
 
         <div class="row">
           <div class="col-md-12">
-            <div class="post-meta">
+            <div class="post-author">
               Author: {{ file.page.author }}
             </div>
             <br>
@@ -41,13 +41,16 @@
       </article>
     </div>
     <article id="taggedPostTemplate"></article>
+    <ul>
     <li id="relatedPostTemplate"></li>
-
+    </ul>
+    <!--
     <nav class="navbar navbar-default navbar-bottom">
       <div class="container">
         Here is some footer words.
       </div>
     </nav>
+    -->
 
     <script type="application/text" id="currTags">{{ file.page.tags }}</script>
     <script type="application/json" id="json_posts">{{ site.posts_as_json }}</script>
