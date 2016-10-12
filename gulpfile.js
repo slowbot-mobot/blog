@@ -81,7 +81,7 @@
                .pipe(collectPosts())
                .pipe(plugins.wrap(function (data) {
                  return fs.readFileSync('src/templates/post.html').toString();
-               }, null, nunOpts)) 
+               }, null, aunOpts)) 
                .pipe(plugins.htmlmin({collapseWhitespace: true}))
                .pipe(gulp.dest("dist/blog"))
                .pipe(reload({stream: true}));
